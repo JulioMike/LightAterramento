@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Light Aterramento</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="styleshee">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link href="css/anychart-ui.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon">
+          <br>  
+          <img src="img/iconelight-copia.png"/>
+          <img class="sidebar-brand-text mx-3" src="img/iconelight-copia2.png"/>            
+          <div class="sidebar-brand-text mx-3 logo">
+            <span style=" color:#fff;font-size: 12px; float:center;"> Aterramento</span>  
+          </div> 
+        </div>
+      </a>
+      <br>
+      <br>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item dropdown no-arrow">
+
+        </li>  
+      <hr class="sidebar-divider"> 
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span style="color:#e0b806">Página Inicial</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+      <div class="sidebar-heading">
+          Dados do Funcionário:
+        </div>
+  
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+          <a class="nav-link " href="perfil.html">
+            <i class="fas fa-user fa-sm fa-fw"></i>
+            <span>Perfil</span>
+          </a>
+        </li>
+      
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Serviços
+      </div>
+
+      
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-wifi"></i>
+          <span>Sondas</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Listas de Sondas:</h6>
+            <a class="collapse-item" href="sonda1.php">Sonda 1</a>
+            <a class="collapse-item" href="sonda2.html">Sonda 2</a>
+            <a class="collapse-item" href="sonda3.html">Sonda 3</a>
+            <a class="collapse-item" href="sonda4.html">Sonda 4</a>
+            <a class="collapse-item" href="sonda5.html">Sonda 5</a>
+            <a class="collapse-item" href="sonda6.html">Sonda 6</a>
+            <a class="collapse-item" href="sonda7.html">Sonda 7</a>
+            <a class="collapse-item" href="sonda8.html">Sonda 8</a>
+            <a class="collapse-item" href="sonda9.html">Sonda 9</a>
+            <a class="collapse-item" href="sonda10.html">Sonda 10</a>
+            <a class="collapse-item" href="sonda11.html">Sonda 11</a>
+            <a class="collapse-item" href="sonda12.html">Sonda 12</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="#Superficie">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Superficies Equipotenciais</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="#linhasEquipotenciais">
+          <i class="fas fa-fw fa-chart-line"></i>
+          <span>Linhas Equipotenciais</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sensorumidade.html">
+          <i class="fas fa-cloud-rain"></i>
+          <span>Sensor de Umidade</span></a>
+      </li>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>
+            <span>Logout</span>
+          </a>
+        </li>  
+      <hr class="sidebar-divider d-none d-md-block">
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+                
+        <!-- End of Topbar -->
+        <br>
+        <br>
+        <br>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Início - Ligth Aterramento</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-redo-alt fa-sm text-white-50"></i> Atualizar Dados</a>
+          </div>
+          
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Content Row -->
+          <!--Malha de Aterramento-->
+            <div class="card card border-left-warning shadow h-100 py-2">
+	            <div class="container-fluid">
+	              <div class="card shadow mb-4">
+	                <div class="card-header py-3">
+	                  <h6 class="m-0 font-weight-bold text-primary">Malha de Aterramento</h6>  
+	                </div>
+	              </div>
+	                <div class="table-responsive">
+	                  <table class="table-responsive-md table-bordered" id="dataTable" width="100%" cellspacing="100" text-align="center">
+	                    <tbody>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                        </tr>
+                        
+	                      <tr>
+                          
+                          
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+	                        <td>
+                            <!--Coluna 1-->
+                            <h6 class="text-uppercase">Sonda 1</h6>
+                            
+	                          <a href="sonda1.php" data-toggle="tooltip" data-placement="right" title="Sonda 1 ">  
+                                <button class="btn-circle btn-lg bg-warning" >
+                                  <i class="fas fa-wifi"></i>          
+                                </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 2</h6>
+	                          <a href="sonda2.html" data-toggle="tooltip" data-placement="right" title="Sonda 2">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 3</h6>
+	                          <a href="sonda3.html" data-toggle="tooltip" data-placement="right" title="Sonda 3">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 4</h6>
+	                          <a href="sonda4.html" data-toggle="tooltip" data-placement="right" title="Sonda 4">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+                          </td>
+                          
+                          
+                          
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+	                      <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+	                        <td>
+                              <h6 class="text-uppercase" >Sonda 5</h6>
+	                          <a href="sonda5.html" data-toggle="tooltip" data-placement="right" title="Sonda 5">
+                              <button class="btn-circle btn-lg bg-warning">    
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 6</h6>
+	                          <a href="sonda6.html" data-toggle="tooltip" data-placement="right" title="Sonda 6">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 7</h6>
+	                          <a href="sonda7.html" data-toggle="tooltip" data-placement="right" title="Sonda 7">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 8</h6>
+	                          <a href="sonda8.html" data-toggle="tooltip" data-placement="right" title="Sonda 8">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+                          </td>
+                          
+                          
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+	                      </tr>
+	                      <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 9</h6>
+	                          <a href="sonda9.html" data-toggle="tooltip" data-placement="right" title="Sonda 9">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 10</h6>
+	                          <a href="sonda10.html" data-toggle="tooltip" data-placement="right" title="Sonda 10">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 11</h6>
+	                          <a href="sonda11.html" data-toggle="tooltip" data-placement="right" title="Sonda 11">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+	                        </td>
+	                        <td>
+                            <h6 class="text-uppercase">Sonda 12</h6>
+	                          <a href="sonda12.html" data-toggle="tooltip" data-placement="right" title="Sonda 12">
+                              <button class="btn-circle btn-lg bg-warning">
+	                              <i class="fas fa-wifi"></i>
+                              </button>
+                            </a>
+                          </td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        </tr>
+                        <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                        </tr>
+                        
+                        
+                          
+	                    </tbody>
+	                  </table>
+	                </div>
+	              
+	            </div>
+        	</div>    
+      </div>
+      <br>
+      <br>
+      <br>    		
+		  <!--Heat Map -->
+      <div class="row" id="Superficie">
+        <div class="card card border-left-primary shadow h-100 py-2">
+          <div class="container-fluid">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Superficies Equipotenciais</h6>
+              </div>
+            </div>            
+          </div>
+          <div id="container" style="width:100%; height:600px;"></div>
+          <script src="js/anychart-base.min.js"></script>
+          <script src="js/anychart-heatmap.min.js"></script>
+          <script src="js/anychart-exports.min.js"></script>
+          <script src="js/anychart-ui.min.js"></script>
+          <script type="text/javascript">anychart.onDocumentReady(function () {
+              //CÁLCULO NUMÉRICO PARA SUPERFÍCIES EQUIPOTENCIAIS
+                var adc = 2, // Terreno além da malha de aterramento (proporção)
+                    passo = 0.5, // 50 cm
+                    x = (adc > 1) ? 28 : 29, y = (adc > 1) ? 12 : 13, // Dimensões da malha de aterramento (m)
+                    largura = x*adc, comprimento = y*adc, // Dimensões da região (m)
+                    mat_x = largura/passo, mat_y = comprimento/passo, // Dimensões da matriz
+                    //ajust_x = Math.ceil(x*(adc-1)/(2*passo)), ajust_y = Math.ceil(y*(adc-1)/(2*passo)), // Coordenadas do primeiro ponto da malha
+                    ajust_x = 37, ajust_y = 13
+                    distancia = 3, // Distância entre os pontos de medição (m)
+                    incr = distancia/passo, // Incremento no índice dos pontos de medição na matriz
+                    erro = 0.01, //Erro admitido como critério de parada
+                    e = 1,
+                    v = [],
+                    v_anterior = [];
+
+                //Preencenho os pontos da matriz (x,y) com valor de tensão 0
+                for (var i = 0; i < mat_x; i++) {
+                  var coluna = [];
+                  for (var j = 0; j < mat_y; j++) {
+                    coluna.push(0);
+                  };
+                  v.push(coluna); // V[coluna x][linha y]
+                };
+                
+                //Copiando dados de v atual para v anterior
+                for (var i = 0; i < mat_x; i++) {
+                  var coluna = [];
+                  for (var j = 0; j < mat_y; j++) {
+                    coluna.push(v[i][j]);
+                  };
+                  v_anterior.push(coluna); // V[coluna x][linha y]
+                };
+
+                var cont = 0;
+                while (e > erro) {
+                  cont++;
+                  console.log(cont);
+                  for (var i = 1; i < mat_x - 1; i++) {
+                    for (var j = 1; j < mat_y - 1; j++) {
+                      v[i][j] = (v_anterior[i+1][j] + v_anterior[i-1][j] + v_anterior[i][j+1] + v_anterior[i][j-1])/4;
+                    };
+                  };
+
+                  // DADOS DE MEDIÇÃO DA MALHA II DO LAT
+
+                  v[ajust_x][ajust_y] = 24.2;
+                  v[ajust_x + incr][ajust_y] = 23.9;
+                  v[ajust_x + 2*incr][ajust_y] = 23.8;
+                  v[ajust_x + 3*incr][ajust_y] = 22.8;
+                  v[ajust_x + 4*incr][ajust_y] = 22.8; 
+                  v[ajust_x + 5*incr][ajust_y] = 22.9;
+                  v[ajust_x + 6*incr][ajust_y] = 25.4;
+
+                  v[ajust_x][ajust_y + incr] = 24.1;
+                  v[ajust_x + incr][ajust_y + incr] = 24.1;
+                  v[ajust_x + 2*incr][ajust_y + incr] = 23.7;
+                  v[ajust_x + 3*incr][ajust_y + incr] = 22.8;
+                  v[ajust_x + 4*incr][ajust_y + incr] = 22.7;
+                  v[ajust_x + 5*incr][ajust_y + incr] = 22.8;
+                  v[ajust_x + 6*incr][ajust_y + incr] = 24.7;
+
+                  v[ajust_x][ajust_y + 2*incr] = 24.5;
+                  v[ajust_x + incr][ajust_y + 2*incr] = 24.1;
+                  v[ajust_x + 2*incr][ajust_y + 2*incr] = 23.1;
+                  v[ajust_x + 3*incr][ajust_y + 2*incr] = 22.9;
+                  v[ajust_x + 4*incr][ajust_y + 2*incr] = 23.0;
+                  v[ajust_x + 5*incr][ajust_y + 2*incr] = 23.1;
+                  v[ajust_x + 6*incr][ajust_y + 2*incr] = 25.3;
+
+                  v[ajust_x][ajust_y + 3*incr] = 24.2;
+                  v[ajust_x + incr][ajust_y + 3*incr] = 24.0;
+                  v[ajust_x + 2*incr][ajust_y + 3*incr] = 22.7;
+                  v[ajust_x + 3*incr][ajust_y + 3*incr] = 22.9;
+                  v[ajust_x + 4*incr][ajust_y + 3*incr] = 23.1;
+                  v[ajust_x + 5*incr][ajust_y + 3*incr] = 22.8;
+                  v[ajust_x + 6*incr][ajust_y + 3*incr] = 25.1;
+
+                  
+                  //Calculando a maior diferença entre as matrizes anterior e atual
+                  var maior_dif = 0, nova_dif = 0;
+                  for (var i = 0; i < mat_x; i++) {
+                    for (var j = 0; j < mat_y; j++) {
+                      nova_dif = Math.abs(v[i][j] - v_anterior[i][j]);
+                      if (nova_dif > maior_dif) {maior_dif = nova_dif};
+                    };
+                  };
+                  e = maior_dif;
+
+                  //Copiando dados de v atual para v anterior
+                  for (var i = 0; i < mat_x; i++) {
+                    for (var j = 0; j < mat_y; j++) {
+                      v_anterior[i][j] = v[i][j];
+                    };
+                  };
+
+                };
+
+              // create data
+              var data = [];
+              for (var i = 0; i < mat_x; i++) {
+                for (var j = 0; j < mat_y; j++){
+                  var ponto = {x: i, y: j, heat: v[i][j]};
+                  data.push(ponto);
+                }
+              }
+              // CONFIGURANDO SUPERFÍCIES EQUIPOTENCIAIS
+              // create a chart and set the data
+              var superficie_eq = anychart.heatMap(data);
+
+              // create and configure a color scale.
+              var customColorScale = anychart.scales.linearColor();
+              customColorScale.colors(["#007799", "#ff9900"]);
+
+              // set the color scale as the color scale of the chart
+              superficie_eq.colorScale(customColorScale);
+
+              // set the chart title
+              superficie_eq.title("Malha de Aterramento (Medições no LAT)");
+
+              // set the container id
+              superficie_eq.container("container");
+
+              // initiate drawing the chart
+              superficie_eq.draw();
+
+
+              // CONFIGURANDO MAPA DE 3 CORES
+              // create a chart and set the data
+              var superficie_3cores = anychart.heatMap(data);
+
+              // create and configure a color scale.
+              var customColorScale = anychart.scales.ordinalColor();
+              customColorScale.ranges([
+                {less: 21},
+                {from: 21, to: 24.5},
+                {greater: 24.5}
+              ]);
+              customColorScale.colors(["#3CB371", "#FFD700", "red"]);
+              
+              // set the color scale as the color scale of the chart
+              superficie_3cores.colorScale(customColorScale);
+
+              // enable legend
+              //superficie_3cores.legend(true);
+
+              // set the chart title
+              superficie_3cores.title("Malha de Aterramento");
+
+              // set the container id
+              superficie_3cores.container("container2");
+
+              // initiate drawing the chart
+              superficie_3cores.draw();
+          });</script>
+          
+        </div>
+      </div>
+		  <br>
+		  <br>
+      <br>
+      <!-- Mapa de 3 cores -->
+      <div class="row" id="tresCores">
+        <div class="card card border-left-primary shadow h-100 py-2">
+          <div class="container-fluid">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Mapa de potenciais </h6>
+              </div>
+            </div>            
+          </div>
+          <div id="container2" style="width:100%; height:600px;"></div>
+        </div>
+      </div>
+      <br>
+		  <br>
+      <br>
+          <br> 
+          <br>
+          <br>    
+          <div class="row">
+              <!-- Approach -->
+              <div class="card card border-left-info shadow mb-4">
+                <div class="container-fluid">  
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Em Construção</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="text-center">
+                      <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_under_construction_46pa.svg" alt="">
+                    </div>
+                    <p>Website Light Aterramento ainda se encontra em estagio de Construção. Aguarde para etapas seguintes do nosso trabalho</p>
+                    <!--<p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>
+                      -->
+                  </div>
+                </div>  
+              </div>
+
+            
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Direitos Autorais &copy; Light Aterramento</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+      
+    </div>
+    <!-- End of Content Wrapper -->
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Detalhes das Sondas -->
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+</body>
+
+</html>

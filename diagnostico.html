@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Light Aterramento</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="styleshee">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link href="css/anychart-ui.min.css" rel="stylesheet" type="text/css">
+
+  <script src="js/natninter.umd.js"></script>
+
+</head>
+
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">      		
+        <!--Heat Map -->
+          <div class="row" id="Superficie">
+            <div class="card card border-left-primary shadow h-100 py-2">
+              <div class="container-fluid">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"> Superficies Equipotenciais</h6>
+                  </div>
+                </div>            
+              </div>
+              <div id="container" style="width:100%; height:600px;"></div>
+              <script src="js/anychart-base.min.js"></script>
+              <script src="js/anychart-heatmap.min.js"></script>
+              <script src="js/anychart-exports.min.js"></script>
+              <script src="js/anychart-ui.min.js"></script>
+              <script type="text/javascript">
+                /*
+                  Algoritmo para a escolha de pontos para instalação de sensores de potencial de
+                  superfície em uma malha de aterramento
+                  Ideia: interpolação e otimização com possíveis múltiplos objetivos
+                  (potencial de superfície; tensão de passo; tensão de toque?)
+                  Implementar método para cálculo das tensões de passo e de toque
+
+                  Esta versão testará o algoritmo da versão 2_1 associado a um método de
+                  otimização para posicionamento dos pontos de medição
+              */
+
+              console.time('Tempo de Simulação');
+              // CÁLCULO DOS LIMIARES ACEITÁVEIS DE POTENCIAIS DE PASSO E DE TOQUE:
+              var p = 68.2, //Resistividade da camada superficial (Ohm*m)
+                  ps = 3000, //Resistividade da camada de brita (Ohm*m)
+                  hs = 0.05, //Espessura da camada de brita (m)
+                  ts = 0.3, //Duração do curto-circuito (s)
+                  k = 0.116,  //Para peso corporal = 50 kg
+
+                  Cs = 1 - 0.09*(1-p/ps)/(2*hs+0.09),
+                  Epasso_max = (1000 + 6*Cs*ps)*k/Math.sqrt(ts)/1000, //Divisão por 1000 para converter para kV
+                  Etoque_max = (1000 + 1.5*Cs*ps)*k/Math.sqrt(ts)/1000,
+
+                  Potencia = 500,
+                  Tensao = 12,
+
+                  Isc = Potencia/(Tensao*Math.sqrt(3)),
+                  Escala = Isc/20,
+
+                  GPR = 4.0833, //GPR em V - Obtido do XGS
+                  GPR = GPR*Escala;
+                  
+                // CÁLCULO DA TENSÃO DE SUPERFÍCIE - PASSO = 1m - MÉTODO: INTERPOLAÇÃO
+                // "Importação" de valores para V(x,y)
+                var v_medicoes = [0.5680, 0.6087, 0.5740, 0.6179, 0.6037, 0.6073, 0.4829, 0.4955, 0.4913, 0.5929, 0.3865, 0.4401, 0.5514, 0.5851, 0.5445, 0.5271, 0.4388, 0.4546, 0.5093],
+                    x_local = [42.4896, 57.0049, 107.2499, 109.0697, 134.0355, 149.0057, 137.9210, 108.0373, 61.4861, 69.7575, 40.0000, 40.0000, 80.0000, 80.0000, 132.3000, 153.4000, 153.4000, 92.3000, 80.0000],
+                    y_local = [26.3821, 37.4884, 34.8403, 14.7601, 29.9984, 15.0106, 3.0727, 3.0437, 9.6713, 25.3647, 9.6000, 40.0000, 40.0000, 33.3000, 33.3000, 27.0000, 3.0000, 3.0000, 9.6000],
+                    xq = [], yq = [];
+
+                for (var i = 18; i <= 173; i++) { xq.push(i); }
+                for (var i = -13; i <= 60; i++) { yq.push(i); }
+
+                var w = xq.length,
+                    h = yq.length,
+                    seeds = [];
+                
+                for (var i = 0; i < v_medicoes.length; i++) {
+                  seeds.push({x: x_local[i]-18, y: y_local[i]+13,  value: v_medicoes[i]});
+                }
+                
+                /*
+                var w = 20, h = 20,
+                    seeds = [
+                      {x: 5, y: 5, value: 10},
+                      {x: 15, y: 5, value: 90},
+                      {x: 15, y: 15, value: 180},
+                      {x: 5, y: 15, value: 20},
+                      {x: 10, y: 10, value: 20},
+                    ];
+                */
+
+                var nnInter = new natninter.Interpolator();
+                
+                nnInter.setOutputSize(w, h);
+                nnInter.addSeeds( seeds );
+
+                nnInter.generateMap();
+                
+                var output = nnInter.generateImage();
+                
+                // CONFIGURANDO SUPERFÍCIES EQUIPOTENCIAIS
+                
+                // create data
+                var k = 0, data = [];
+                for (var i = 0; i < h; i++) {
+                  for (var j = 0; j < w; j++){
+                    var ponto = {x: j, y: i, heat: output._data[k]};
+                    data.push(ponto);
+                    k++;
+                  }
+                }
+
+                // create a chart and set the data
+                var superficie_eq = anychart.heatMap(data);
+
+                // create and configure a color scale.
+                var customColorScale = anychart.scales.linearColor();
+                customColorScale.colors(["#0000ff", "#ff0000"]);
+
+                // set the color scale as the color scale of the chart
+                superficie_eq.colorScale(customColorScale);
+
+                // set the chart title
+                superficie_eq.title("Malha de Aterramento");
+
+                // set the container id
+                superficie_eq.container("container");
+
+                // initiate drawing the chart
+                superficie_eq.draw();
+                
+
+                //Criando matriz de pontencial de superfície
+                var V = [], k = 0;
+
+                for (var j = 0; j < h; j++) {
+                  var linha = [];
+                  for (var i = 0; i < w; i++) {
+                    linha.push(output._data[k]);
+                    k++;
+                  }
+                  V.push(linha); // V[linha y][coluna x]
+                }
+
+                // CÁLCULO DO POTENCIAL DE TOQUE E DE PASSO EM TODA A MALHA
+                var Vpasso = [],
+                    Vtoque = [];
+
+                for (var j = 0; j < h; j++){
+                  var linha_passo = [], linha_toque = [];
+                  for (var i = 0; i < w; i++){
+                    var candidatos_passo = Array(4).fill(0),
+                        candidatos_toque = Array(4).fill(0);
+                    
+                    candidatos_passo[0] = (j > 0)   ? Math.abs(V[j-1][i] - V[j][i]) : 0;
+                    candidatos_passo[1] = (j < h-1) ? Math.abs(V[j+1][i] - V[j][i]) : 0;
+                    candidatos_passo[2] = (i > 0)   ? Math.abs(V[j][i-1] - V[j][i]) : 0;
+                    candidatos_passo[3] = (i < w-1) ? Math.abs(V[j][i+1] - V[j][i]) : 0;
+
+                    candidatos_toque[0] = (j > 0)   ? Math.abs(GPR - V[j-1][i]) : 0;
+                    candidatos_toque[1] = (j < h-1) ? Math.abs(GPR - V[j+1][i]) : 0;
+                    candidatos_toque[2] = (i > 0)   ? Math.abs(GPR - V[j][i-1]) : 0;
+                    candidatos_toque[3] = (i < w-1) ? Math.abs(GPR - V[j][i+1]) : 0;
+                    
+                    linha_passo.push(Math.max.apply(null, candidatos_passo));
+                    linha_toque.push(Math.max.apply(null, candidatos_toque));
+                  }
+                  Vpasso.push(linha_passo);
+                  Vtoque.push(linha_toque);
+                }
+                
+                // Parâmetros máximos obtidos
+                var V_max = 0, Vpasso_max = 0, Vtoque_max = 0;
+
+                for (var j = 0; j < h; j++) {
+                  var V_novo = Math.max.apply(null, V[j]),
+                      Vpasso_novo = Math.max.apply(null, Vpasso[j]),
+                      Vtoque_novo = Math.max.apply(null, Vtoque[j]);
+
+                  V_max = (V_novo > V_max) ? V_novo : V_max;
+                  Vpasso_max = (Vpasso_novo > Vpasso_max) ? Vpasso_novo : Vpasso_max;
+                  Vtoque_max = (Vtoque_novo > Vtoque_max) ? Vtoque_novo : Vtoque_max;
+                }
+
+                // CLASSIFICAÇÃO DAS REGIÕES DE RISCO - Vpasso
+                var Vstep = [], Vtouch = [];
+
+                for (var j = 0; j < h; j++) {
+                  var linha_step = [], linha_touch = [];
+                  for (var i = 0; i < w; i++) {
+                    var step, touch;
+
+                    if (Vpasso[j][i] < 0.9*Epasso_max) step = 0;
+                    if (Vpasso[j][i] >= 0.9*Epasso_max && Vpasso[j][i] < Epasso_max) step = 0.5;
+                    if (Vpasso[j][i] >= Epasso_max) step = 1;
+                    
+                    linha_step.push(step);
+
+                    if (Vtoque[j][i] < 0.5*Etoque_max) touch = 0;
+                    if (Vtoque[j][i] >= 0.5*Etoque_max && Vtoque[j][i] < 0.9*Etoque_max) touch = 0.5;
+                    if (Vtoque[j][i] >= 0.9*Etoque_max) touch = 1;
+
+                    linha_touch.push(touch);
+                  }
+                  Vstep.push(linha_step); // Vstep[linha y][coluna x]
+                  Vtouch.push(linha_touch); //Vtouch[linha y][coluna x]
+                }
+
+                console.timeEnd('Tempo de Simulação');
+
+
+                
+                var string_V = convMatriz_JS_matlab(V),
+                    string_Vpasso = convMatriz_JS_matlab(Vpasso),
+                    string_Vtoque = convMatriz_JS_matlab(Vtoque);
+
+                function convMatriz_JS_matlab(matriz){
+                  // Criando string de tradução para Matlab
+                  var string = "[";
+                  for (var j = 0; j < h; j++){
+                    for (var i = 0; i < w; i++){
+                      string += matriz[j][i].toString() + " ";
+                    }
+                    string += "; ";
+                  }
+                  string += "]";
+
+                  return string;
+                }
+              </script>
+              
+            </div>
+          </div>
+        
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+</body>
+</html>
